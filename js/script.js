@@ -248,57 +248,6 @@ document.getElementById('hireBtn').addEventListener('click', () => {
   animateBadge();
 })();
 
-/* ============ Hero: scramble effect ============ */
-(function initHeroScramble() {
-  const hero = document.getElementById('hero');
-
-  const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%';
-  function scramble(el, target) {
-    let iter = 0;
-    const interval = setInterval(() => {
-      el.textContent = target.split('').map((ch, i) => {
-        if (i < Math.floor(iter)) return target[i];
-        return CHARS[Math.floor(Math.random() * CHARS.length)];
-      }).join('');
-      iter += 0.35;
-      if (iter >= target.length) {
-        el.textContent = target;
-        clearInterval(interval);
-      }
-    }, 40);
-  }
-
-  const names = ['Syed', 'Faisal', 'Naseem.'];
-  const lineEls = [document.getElementById('nameLine0'), document.getElementById('nameLine1'), document.getElementById('nameLine2')];
-  setTimeout(() => {
-    lineEls.forEach((el, i) => {
-      setTimeout(() => scramble(el, names[i]), i * 180);
-    });
-  }, 400);
-})();
-
-/* ============ Hero: match side image height to name block ============ */
-(function syncHeroImageHeight() {
-  const nameEl = document.querySelector('.hero-name-col');
-  const wrapperEl = document.querySelector('.hero-img-wrapper');
-  if (!nameEl || !wrapperEl) return;
-
-  const mq = window.matchMedia('(min-width: 769px)');
-
-  function apply() {
-    if (mq.matches) {
-      wrapperEl.style.height = nameEl.getBoundingClientRect().height + 'px';
-    } else {
-      wrapperEl.style.height = '';
-    }
-  }
-
-  new ResizeObserver(apply).observe(nameEl);
-  mq.addEventListener('change', apply);
-  if (document.fonts) document.fonts.ready.then(apply);
-  apply();
-})();
-
 /* ============ Ticker ============ */
 (function initTicker() {
   const track = document.getElementById('tickerTrack');

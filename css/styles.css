@@ -107,6 +107,18 @@ nav {
   padding: 28px 60px;
   transition: padding 0.4s, background 0.4s;
 }
+/* Permanent dark gradient so nav stays legible over the hero banner photo, even unscrolled */
+nav::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to bottom, rgba(6, 6, 8, 0.75) 0%, rgba(6, 6, 8, 0.35) 65%, transparent 100%);
+  opacity: 1;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+nav.nav-scrolled::before { opacity: 0; }
 nav.nav-scrolled {
   padding-top: 16px;
   padding-bottom: 16px;
@@ -122,6 +134,7 @@ nav.nav-scrolled {
   color: #fff;
   text-decoration: none;
   letter-spacing: -0.01em;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
 }
 .nav-links {
   display: flex;
@@ -131,12 +144,13 @@ nav.nav-scrolled {
 }
 .nav-links a {
   position: relative;
-  color: var(--muted);
+  color: #e8e6e2;
   text-decoration: none;
   font-size: .82rem;
   letter-spacing: .08em;
   text-transform: uppercase;
   font-weight: 500;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
   transition: color 0.2s;
 }
 .nav-links a::after {
@@ -191,7 +205,7 @@ nav.nav-scrolled {
   font-size: .72rem;
   color: var(--accent);
   letter-spacing: .14em;
-  margin: 0px 0 12px 30px;
+  margin: 0 0 12px 0;
 }
 .section-heading {
   font-family: var(--font-heading);
@@ -245,352 +259,108 @@ nav.nav-scrolled {
   .reveal, .reveal-left { transition: none !important; opacity: 1; transform: none; }
   .ticker-anim { animation: none !important; }
   .scroll-line-anim { animation: none !important; }
-  .hero-role-badge { animation: none !important; }
+  .hire-dot { animation: none !important; }
 }
 
 /* ============ Hero ============ */
 #hero {
   position: relative;
   z-index: 2;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  height: auto;
+  aspect-ratio: 1424 / 745;
+  min-height: 200px;
   overflow: hidden;
-  padding: 0 60px 80px;
-}
-@media (max-width: 900px) {
-  #hero { padding: 0 24px 60px; }
+  padding: 0;
 }
 
-/* Hide old hero images */
-.hero-images { display: none; }
-
-/* Simplified overlay - no image gradients needed */
-.hero-text-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(to top, #060608 0%, transparent 35%);
-}
-
-.hero-content {
+.hero-banner-wrap {
   position: relative;
-  z-index: 2;
-  max-width: 900px;
-}
-
-/* ============ Floating Role Badge (flat card) ============ */
-.hero-role-badge {
-  position: absolute;
-  top: 50%;
-  right: 6%;
-  transform: translateY(-50%);
-  z-index: 3;
-  padding: 42px 50px;
-  background: linear-gradient(145deg, rgba(23, 23, 30, 0.95), rgba(10, 10, 14, 0.98));
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
-  pointer-events: none;
-  animation: badgeFloat 5s ease-in-out infinite;
-  will-change: transform;
-}
-
-@keyframes badgeFloat {
-  0%, 100% { transform: translateY(-50%); }
-  50% { transform: translateY(calc(-50% - 16px)); }
-}
-
-/* Glow effect behind badge */
-.badge-glow {
-  position: absolute;
-  inset: -20px;
-  background: radial-gradient(ellipse at center, rgba(255, 107, 53, 0.12) 0%, transparent 70%);
-  border-radius: 30px;
-  z-index: -1;
-  filter: blur(15px);
-}
-
-/* Badge content */
-.badge-content {
-  position: relative;
-  z-index: 1;
-}
-
-.badge-line {
-  font-family: var(--font-mono);
-  font-size: 1.15rem;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  color: var(--text-main);
-  line-height: 1.6;
-}
-
-.badge-line.accent {
-  color: var(--accent);
-}
-
-.badge-divider {
   width: 100%;
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(255, 107, 53, 0.4), transparent);
-  margin: 8px 0;
+  height: 100%;
 }
 
-/* Corner accents */
-.badge-corners {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.corner {
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  border-color: var(--accent);
-  border-style: solid;
-  border-width: 0;
-  opacity: 0.6;
-}
-
-.corner-tl {
-  top: -1px; left: -1px;
-  border-top-width: 2px;
-  border-left-width: 2px;
-  border-top-left-radius: 20px;
-}
-
-.corner-tr {
-  top: -1px; right: -1px;
-  border-top-width: 2px;
-  border-right-width: 2px;
-  border-top-right-radius: 20px;
-}
-
-.corner-bl {
-  bottom: -1px; left: -1px;
-  border-bottom-width: 2px;
-  border-left-width: 2px;
-  border-bottom-left-radius: 20px;
-}
-
-.corner-br {
-  bottom: -1px; right: -1px;
-  border-bottom-width: 2px;
-  border-right-width: 2px;
-  border-bottom-right-radius: 20px;
-}
-
-/* Flat shadow layer (card depth, no perspective/tilt) */
-.hero-role-badge::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.06) inset,
-    0 20px 40px rgba(0, 0, 0, 0.5),
-    10px 10px 0 rgba(255, 107, 53, 0.1);
-  pointer-events: none;
-}
-
-/* Edge highlight */
-.hero-role-badge::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 50%;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.03), transparent);
-  border-radius: 20px 20px 0 0;
-  pointer-events: none;
-}
-
-@media (max-width: 1200px) {
-  .hero-role-badge {
-    right: 3%;
-    padding: 26px 30px;
-  }
-  .badge-line { font-size: .9rem; }
-}
-
-@media (max-width: 900px) {
-  .hero-role-badge { display: none; }
-}
-
-.hero-eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-family: var(--font-mono);
-  font-size: .75rem;
-  color: var(--accent);
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  margin-bottom: 28px;
-}
-.eyebrow-line {
+.hero-banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   display: block;
-  width: 32px;
-  height: 1px;
+}
+
+/* Clickable Available for Hire badge */
+.hero-hire-badge {
+  position: absolute;
+  bottom: 14%;
+  right: 6%;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  background: rgba(6, 6, 8, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 107, 53, 0.4);
+  border-radius: 999px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 5;
+}
+
+.hero-hire-badge:hover {
   background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(255, 107, 53, 0.3);
+}
+
+.hire-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: hirePulse 2s ease-in-out infinite;
   flex-shrink: 0;
 }
 
-/* New hero name row - image left, name right */
-.hero-name-row {
-  display: flex;
-  align-items: stretch;
-  gap: 0.1rem;
-  margin-bottom: 40px;
+.hero-hire-badge:hover .hire-dot {
+  background: #fff;
 }
 
-.hero-name-col {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-width: 0;
+@keyframes hirePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.4); }
 }
 
-/* Side image wrapper */
-.hero-img-wrapper {
-  flex-shrink: 0;
-  width: min(46%, 480px);
-  display: flex;
-  align-self: stretch;
-  border-radius: 6px;
-  overflow: hidden;
-  position: relative;
-}
-
-/* Bottom blend/fade effect */
-.hero-img-wrapper::after {
-  content: '';
+/* Bottom fade */
+.hero-banner-fade {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 10%;
+  height: 12%;
   background: linear-gradient(to top, var(--background) 0%, transparent 100%);
   pointer-events: none;
-  z-index: 1;
+  z-index: 3;
 }
 
-/* Side profile image - dark/shadowy by default */
-.hero-side-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  display: block;
-  filter: grayscale(1) brightness(0.4);
-  transition: filter 0.6s ease;
-}
-
-/* Hero name */
-.hero-name {
-  display: flex;
-  flex-direction: column;
-  font-family: var(--font-heading);
-  font-weight: 900;
-  color: #fff;
-  line-height: .92;
-  letter-spacing: -0.04em;
-  font-size: clamp(4rem, 9vw, 8.5rem);
-  margin: 0;
-}
-.hero-name .block {
-  display: block;
-  line-height: 1.05;
-}
-
-/* On hover - color comes and visible */
-.hero-name-row:hover .hero-side-img {
-  filter: grayscale(0) brightness(0.85);
-}
-
-/* Responsive hero image */
 @media (max-width: 768px) {
-  .hero-name-row {
-    flex-direction: column;
-    gap: 1.5rem;
+  .hero-hire-badge {
+    bottom: 8%;
+    right: 50%;
+    transform: translateX(50%);
+    font-size: .7rem;
+    padding: 12px 22px;
   }
-  .hero-img-wrapper {
-    width: 100%;
-    height: 300px;
+  .hero-hire-badge:hover {
+    transform: translateX(50%) scale(1.05);
   }
-  .hero-side-img {
-    width: 100%;
-    height: 100%;
-    min-width: unset;
-    max-width: unset;
-  }
-}
-
-.hero-bottom-row {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-.hero-bio {
-  max-width: 400px;
-  color: var(--muted);
-  line-height: 1.75;
-  font-size: .95rem;
-  margin: 0;
-}
-.hero-bio strong { color: var(--text-main); font-weight: 500; }
-
-.hero-cta-col {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 20px;
-}
-.hero-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: #fff;
-  border: 1px solid rgba(255,255,255,.15);
-  border-radius: 999px;
-  padding: 14px 32px;
-  font-size: .88rem;
-  font-weight: 500;
-  text-decoration: none;
-  transition: border-color 0.3s, background 0.3s, gap 0.3s;
-}
-.hero-cta:hover {
-  border-color: var(--accent);
-  background: rgba(255,107,53,.08);
-  gap: 16px;
-}
-.hero-cta .arrow { transition: transform 0.3s; }
-.hero-cta:hover .arrow { transform: translateX(4px); }
-
-.scroll-hint {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--font-mono);
-  font-size: .7rem;
-  color: var(--muted);
-  letter-spacing: .1em;
-  text-transform: uppercase;
-}
-.scroll-line-anim {
-  height: 1px;
-  width: 40px;
-  background: var(--muted);
-  animation: scrollPulse 2s ease-in-out infinite;
-}
-@keyframes scrollPulse {
-  0%, 100% { width: 40px; opacity: 0.4; }
-  50%       { width: 64px; opacity: 1; }
 }
 
 /* ============ Ticker ============ */

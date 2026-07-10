@@ -192,6 +192,41 @@ document.getElementById('hireBtn').addEventListener('click', () => {
   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
 });
 
+document.getElementById('mobileHireBtn')?.addEventListener('click', () => {
+  closeMobileMenu();
+  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+});
+
+/* ============ Mobile hamburger menu ============ */
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+
+function closeMobileMenu() {
+  mobileMenu.classList.remove('open');
+  hamburgerBtn.classList.remove('active');
+  hamburgerBtn.setAttribute('aria-expanded', 'false');
+  document.body.classList.remove('menu-open');
+}
+
+(function initMobileMenu() {
+  if (!hamburgerBtn || !mobileMenu) return;
+
+  hamburgerBtn.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburgerBtn.classList.toggle('active', isOpen);
+    hamburgerBtn.setAttribute('aria-expanded', String(isOpen));
+    document.body.classList.toggle('menu-open', isOpen);
+  });
+
+  mobileMenu.querySelectorAll('.mobile-menu-links a').forEach(a => {
+    a.addEventListener('click', closeMobileMenu);
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900) closeMobileMenu();
+  });
+})();
+
 /* ============ Scroll reveal ============ */
 (function initReveal() {
   const obs = new IntersectionObserver(

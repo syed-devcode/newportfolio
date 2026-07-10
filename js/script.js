@@ -139,7 +139,7 @@ const PROJECTS = [
 ];
 
 const CONTACT_LINKS = [
-  { label: 'Email', val: 'syed.devcode@gmail.com', href: 'mailto:syed.devcode@gmail.com' },
+  { label: 'Email', val: 'queries@syedcodes.com', href: 'mailto:queries@syedcodes.com' },
   { label: 'Location', val: 'Dubai, UAE', href: null },
   { label: 'LinkedIn', val: 'linkedin.com/in/syedfaisal', href: 'https://linkedin.com/in/syedfaisal' },
   { label: 'GitHub', val: 'github.com/syedfaisal', href: 'https://github.com/syedfaisal' },

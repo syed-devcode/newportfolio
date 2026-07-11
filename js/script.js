@@ -142,8 +142,8 @@ const PROJECTS = [
 const CONTACT_LINKS = [
   { label: 'Email', val: 'queries@syedcodes.com', href: 'mailto:queries@syedcodes.com' },
   { label: 'Location', val: 'Dubai, UAE', href: null },
-  { label: 'LinkedIn', val: 'linkedin.com/in/syedfaisal', href: 'https://linkedin.com/in/syedfaisal' },
-  { label: 'GitHub', val: 'github.com/syedfaisal', href: 'https://github.com/syedfaisal' },
+  { label: 'LinkedIn', val: 'linkedin.com/in/syedfaisal', href: 'https://www.linkedin.com/in/syed-faisal-naseem-4547a3362/' },
+  { label: 'Contact', val: '+971 55 2803860', href: 'tel:+971552803860' },
 ];
 
 const EMAILJS_PUBLIC_KEY = 'u4GEr9wOIZpvZ3ire';

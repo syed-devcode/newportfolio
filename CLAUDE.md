@@ -49,3 +49,7 @@ Canonical domain is `https://www.syedcodes.com/`. `index.html` has one `<h1>` (t
 Page-wide smooth scrolling uses **Lenis**, loaded via CDN in `index.html` (`https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js`, pinned to major v1) — no npm/bundler involved. `js/script.js` instantiates it near the top of the file and drives it with its own `requestAnimationFrame` loop; `css/styles.css` deliberately has no `scroll-behavior: smooth` since that would fight Lenis's own animation.
 
 All in-page anchor links (`a[href^="#"]` — nav, mobile menu, hero "Available for Hire" badge, logo) are intercepted at load and routed through a shared `smoothScrollTo(target)` helper that calls `lenis.scrollTo()`, falling back to native `scrollIntoView` if the CDN script fails to load. The "Available for hire" buttons use the same helper. Touch devices are unaffected — Lenis only smooths wheel/trackpad input by default (`syncTouch` is off), so mobile keeps native touch scrolling.
+
+### WhatsApp FAB
+
+A fixed floating action button (`.whatsapp-fab` in `index.html`, styled in `css/styles.css`) sits bottom-right on every page and links straight to `https://wa.me/971552803860` (WhatsApp's click-to-chat URL format: country code + number, no `+`/spaces/dashes) — update that number if the contact number changes. It's a plain `https://` link, so it's untouched by the Lenis anchor-interception logic above, which only targets `a[href^="#"]`.

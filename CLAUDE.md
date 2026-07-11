@@ -39,3 +39,7 @@ The contact form submits via **EmailJS** (loaded from CDN in `index.html`, confi
 ### Portfolio project cards
 
 Each entry in `PROJECTS` has a `video` path (from `Videos/`) used both as a muted hover-preview inside the collapsed row and as a larger looping video when the card is expanded. Only one project can be expanded at a time (`toggle()` collapses all others first).
+
+### SEO
+
+Canonical domain is `https://www.syedcodes.com/`. `index.html` has one `<h1>` (the About section heading) plus `og:*`/`twitter:*` meta tags for link previews — `og:image` points to `images/bestbanner.jpg` as an absolute URL, so update that tag if the hero banner image changes. `robots.txt` and `sitemap.xml` live at the project root (served from site root since there's no build step). Link-preview caches (e.g. WhatsApp/Facebook's crawler) persist per-URL after a share, so OG tag changes may need a manual re-scrape (Facebook Sharing Debugger) to show up immediately rather than waiting out the cache.

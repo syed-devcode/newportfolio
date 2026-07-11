@@ -118,7 +118,7 @@ const PROJECTS = [
     title: 'Law Firm Project',
     description: 'A professional, conversion-focused website for a law firm — featuring practice area pages, attorney profiles, and a seamless intake form.',
     tags: ['React', 'Node.js', 'Tailwind CSS', 'Railway'],
-    url: 'https://syed-alnaqbi.up.railway.app/',
+    url: 'https://lawfirm.syedcodes.com/',
     video: 'Videos/lawfirm.mp4',
   },
   {

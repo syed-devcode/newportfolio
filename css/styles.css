@@ -14,7 +14,8 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+/* Smooth scrolling is handled by Lenis (see js/script.js); native smooth-scroll is
+   intentionally left off here so the two don't fight each other. */
 
 body {
   margin: 0;

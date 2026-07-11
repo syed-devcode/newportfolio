@@ -150,6 +150,38 @@ const EMAILJS_PUBLIC_KEY = 'u4GEr9wOIZpvZ3ire';
 const EMAILJS_SERVICE_ID = 'service_qgjcjkp';
 const EMAILJS_TEMPLATE_ID = 'template_amoknnj';
 
+/* ============ Lenis smooth scroll ============ */
+// Touch devices are left on native scroll by default (Lenis only smooths
+// wheel/trackpad input unless syncTouch is turned on), so mobile scrolling
+// is unaffected.
+const lenis = typeof Lenis !== 'undefined' ? new Lenis() : null;
+
+if (lenis) {
+  requestAnimationFrame(function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  });
+}
+
+function smoothScrollTo(target) {
+  if (lenis) {
+    lenis.scrollTo(target);
+  } else {
+    document.querySelector(target)?.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+// Intercept all in-page anchor links (nav, mobile menu, hero badge, logo, etc.)
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  const targetId = link.getAttribute('href');
+  if (targetId.length > 1 && document.querySelector(targetId)) {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      smoothScrollTo(targetId);
+    });
+  }
+});
+
 /* ============ Custom cursor + spotlight ============ */
 (function initCursorAndSpotlight() {
   if (window.matchMedia('(hover: none)').matches) return;
@@ -190,12 +222,12 @@ const EMAILJS_TEMPLATE_ID = 'template_amoknnj';
 })();
 
 document.getElementById('hireBtn').addEventListener('click', () => {
-  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  smoothScrollTo('#contact');
 });
 
 document.getElementById('mobileHireBtn')?.addEventListener('click', () => {
   closeMobileMenu();
-  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  smoothScrollTo('#contact');
 });
 
 /* ============ Mobile hamburger menu ============ */

@@ -1,12 +1,13 @@
 /* ============ Data ============ */
 
 const TICKER_ITEMS = [
-  'React Developer', 'Tailwind CSS', 'Node.js', 'AI Integration', 'Express.js',
+  'HTML5 & CSS3', 'React Developer', 'Tailwind CSS', 'Node.js', 'AI Integration', 'Express.js',
   'Vite', 'Deployment — Railway · Vercel · Cloudflare', 'REST APIs',
   'Nodemailer', 'Supabase', 'Shopify',
 ];
 
 const SKILLS = [
+  { name: 'HTML5 & CSS3', pct: 95 },
   { name: 'React / Vite', pct: 92 },
   { name: 'JavaScript', pct: 88 },
   { name: 'Tailwind CSS', pct: 92 },
@@ -23,12 +24,12 @@ const EXPERIENCE = [
     role: 'Full-Stack Web Developer',
     company: 'Self-employed · Dubai, UAE',
     desc: 'Designing and building production-ready websites for clients across the UAE — law firm portals, professional profile sites, and trading company platforms. Managing the full project lifecycle from client briefing and design through to development and deployment.',
-    tags: ['React', 'Node.js', 'Tailwind CSS', 'Express', 'Vite'],
+    tags: ['HTML5 & CSS3','React', 'Node.js', 'Tailwind CSS', 'Express', 'Vite'],
   },
   {
     period: '2022 — Present',
-    role: 'Senior System Administrator',
-    company: 'Al Naqbi & Partners · Dubai, UAE',
+    role: 'Senior IT Consultant',
+    company: 'Al Naqbi & Partners Advocates & Legal Consultants · Dubai, UAE',
     desc: "Sole technology lead for a UAE law firm — managing enterprise infrastructure including Windows Server, Active Directory, Hyper-V virtualisation, and Veeam backup & DR systems. Spearheaded the firm's digital presence by commissioning and delivering their client-facing website.",
     tags: ['Windows Server', 'Active Directory', 'Hyper-V', 'Office 365', 'IT Strategy'],
   },

@@ -115,18 +115,18 @@ const SERVICES = [
 const PROJECTS = [
   {
     id: 1,
-    title: 'Law Firm Project',
+    title: 'AlNaqbi & Partners Law Firm',
     description: 'A professional, conversion-focused website for a law firm — featuring practice area pages, attorney profiles, and a seamless intake form.',
-    tags: ['React', 'Node.js', 'Tailwind CSS', 'Railway'],
+    tags: ['React', 'Node.js', 'Tailwind CSS', 'Cloudflare Pages'],
     url: 'https://lawfirm.syedcodes.com/',
     video: 'Videos/lawfirm.mp4',
   },
   {
     id: 2,
-    title: 'Adnan Law — Individual Lawyer',
+    title: 'Al Wajahat Legal Consultancy',
     description: 'A sleek personal website for an individual lawyer — showcasing expertise, case results, and a direct client consultation booking experience.',
-    tags: ['React', 'Tailwind CSS', 'Cloudflare Pages'],
-    url: 'https://adnanlawfirm.pages.dev/',
+    tags: ['HTML5', 'CSS3', 'JavaScript', 'Cloudflare Pages'],
+    url: 'https://alwajahat.syedcodes.com',
     video: 'Videos/adnan.mp4',
   },
   {

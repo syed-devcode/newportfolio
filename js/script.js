@@ -140,7 +140,7 @@ const PROJECTS = [
 ];
 
 const CONTACT_LINKS = [
-  { label: 'Email', val: 'queries@syedcodes.com', href: 'mailto:queries@syedcodes.com' },
+  { label: 'Email', val: 'syed.faisal@syedcodes.com', href: 'mailto:syed.faisal@syedcodes.com' },
   { label: 'Location', val: 'Dubai, UAE', href: null },
   { label: 'LinkedIn', val: 'linkedin.com/in/syedfaisal', href: 'https://www.linkedin.com/in/syed-faisal-naseem-4547a3362/' },
   { label: 'Contact', val: '+971 55 2803860', href: 'tel:+971552803860' },

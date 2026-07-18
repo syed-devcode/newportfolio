@@ -438,9 +438,6 @@ function closeMobileMenu() {
         <div class="project-panel-inner">
           <p class="project-desc">${p.description}</p>
           <video class="project-video" src="${p.video}" muted loop playsinline></video>
-          <div class="project-visit-row">
-            <a class="project-visit-btn" href="${p.url}" target="_blank" rel="noopener noreferrer">Visit Site ↗</a>
-          </div>
         </div>
       </div>
     </div>
@@ -453,7 +450,6 @@ function closeMobileMenu() {
     const arrow = item.querySelector('.project-arrow');
     const hoverVideo = item.querySelector('.project-preview video');
     const expandVideo = item.querySelector('.project-video');
-    const visitBtn = item.querySelector('.project-visit-btn');
 
     function toggle() {
       const isExpanded = item.classList.contains('expanded');
@@ -467,7 +463,6 @@ function closeMobileMenu() {
 
     row.addEventListener('click', toggle);
     arrow.addEventListener('click', e => { e.stopPropagation(); toggle(); });
-    visitBtn.addEventListener('click', e => e.stopPropagation());
 
     row.addEventListener('mouseenter', () => { hoverVideo.play().catch(() => {}); });
     row.addEventListener('mouseleave', () => { hoverVideo.pause(); hoverVideo.currentTime = 0; });

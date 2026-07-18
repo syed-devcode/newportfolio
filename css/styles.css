@@ -934,21 +934,7 @@ body.menu-open { overflow: hidden; }
   border-radius: 12px;
   border: 1px solid rgba(255,255,255,.1);
   display: block;
-  margin-bottom: 20px;
 }
-.project-visit-row { display: flex; justify-content: flex-end; }
-.project-visit-btn {
-  font-family: var(--font-mono);
-  font-size: .75rem;
-  letter-spacing: .1em;
-  color: var(--accent);
-  border: 1px solid rgba(255,107,53,.4);
-  padding: 10px 20px;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: all 0.2s;
-}
-.project-visit-btn:hover { background: var(--accent); color: var(--accent-text); }
 
 /* ============ Contact ============ */
 .contact-grid {

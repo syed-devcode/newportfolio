@@ -38,7 +38,7 @@ The contact form submits via **EmailJS** (loaded from CDN in `index.html`, confi
 
 ### Portfolio project cards
 
-Each entry in `PROJECTS` has a `video` path (from `Videos/`) used both as a muted hover-preview inside the collapsed row and as a larger looping video when the card is expanded. Only one project can be expanded at a time (`toggle()` collapses all others first).
+Each entry in `PROJECTS` has a `video` path (from `Videos/`) used both as a muted hover-preview inside the collapsed row and as a larger looping video when the card is expanded. Only one project can be expanded at a time (`toggle()` collapses all others first). There is no "Visit Site" link on expanded cards — it was removed; the `url` field still present on each `PROJECTS` entry is unused by the renderer.
 
 ### SEO
 

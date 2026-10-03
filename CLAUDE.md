@@ -14,7 +14,7 @@ There is no build/lint/test tooling in this repo (no `package.json`). To work on
 npx serve .
 ```
 
-Changes to `css/styles.css` and `js/script.js` are picked up on refresh — no compilation step.
+Changes to `css/styles.css` and `js/script.js` are picked up on refresh — no compilation step. The local `.vscode/settings.json` (untracked) sets the VS Code Live Server port to `5501`.
 
 ## Deployment
 
@@ -34,7 +34,11 @@ Everything lives in three files:
 
 ### Contact form
 
-The contact form submits via **EmailJS** (loaded from CDN in `index.html`, configured in `js/script.js` with `EMAILJS_PUBLIC_KEY` / `EMAILJS_SERVICE_ID` / `EMAILJS_TEMPLATE_ID`) — there is no backend. See [[emailjs_gmail_selfloop_fix]] in memory for a known EmailJS/Gmail gotcha: the form fails silently if EmailJS's connected Gmail account is the same as the forward-to destination address.
+The contact form submits via **EmailJS** (loaded from CDN in `index.html`, configured in `js/script.js` with `EMAILJS_PUBLIC_KEY` / `EMAILJS_SERVICE_ID` / `EMAILJS_TEMPLATE_ID`) — there is no backend. Submissions are delivered to `syed.faisal@syedcodes.com`, a Zoho Mail mailbox (the same address shown in `CONTACT_LINKS`); Cloudflare Email Routing is no longer used. If the form reports success but no email arrives, check the EmailJS template's "To Email" field and Zoho's spam filtering / the domain's SPF/DKIM first. See [[emailjs_gmail_selfloop_fix]] in memory for the history of an earlier Gmail self-loop bug under the old setup.
+
+### Email signature assets
+
+`images/sfn-logo-email.png` is not referenced by the site — it's hosted here only so the email signature can load it from `https://www.syedcodes.com/images/sfn-logo-email.png`. Don't delete or rename it as "unused".
 
 ### Portfolio project cards
 
